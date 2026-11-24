@@ -1,0 +1,97 @@
+/* ===== Cartelera tipo plataforma ===== */
+html #site #shirts .cat{min-width:0}
+html #site #shirts .rowwrap{position:relative;margin:0 -18px}
+html #site #shirts .cat .shirts{--cw:min(64vw,270px);display:flex!important;grid-template-columns:none!important;gap:14px!important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:18px calc(50% - var(--cw)/2) 12px!important;margin:0!important;max-width:none!important}
+html #site #shirts .cat .shirts::-webkit-scrollbar{display:none}
+html #site #shirts .cat .shirt{flex:0 0 var(--cw)!important;width:var(--cw)!important;scroll-snap-align:center;transform:scale(.84)!important;opacity:.4;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .35s!important;cursor:pointer;filter:none!important;animation:none!important}
+html #site #shirts .cat .shirt.is-c{transform:scale(1)!important;opacity:1}
+html #site #shirts .shirt .info>*:not(div[style]){display:none!important}
+html #site #shirts .shirt .info{padding:12px 4px 4px!important}
+html #site #shirts .shirt h3{font-size:clamp(20px,5.6vw,26px)!important;white-space:normal}
+html #site #shirts .shirt.is-c h3{text-shadow:0 0 18px rgba(47,134,216,.6)}
+.r-hint{display:block;margin:2px 0 0;text-align:center;font:500 10px var(--cap);letter-spacing:.3em;text-transform:uppercase;color:#fff;opacity:.55}
+.r-nav{display:none}
+@media (min-width:900px){
+  html #site #shirts .cat .shirts{--cw:250px}
+  .r-hint{display:none}
+  .r-nav{display:grid;place-items:center;position:absolute;top:42%;z-index:5;width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(0,0,0,.65);color:#fff;font-size:28px;line-height:1;cursor:pointer;transform:translateY(-50%);transition:background .2s,border-color .2s}
+  .r-prev{left:calc(50% - 125px - 90px)}.r-next{right:calc(50% - 125px - 90px)}
+  .r-nav:hover{border-color:#5cb4ff;background:rgba(47,134,216,.4)}
+}
+/* ===== Ficha de la camiseta ===== */
+.ficha{position:fixed;inset:0;z-index:45;background:#000;opacity:0;transition:opacity .3s}
+.ficha.open{opacity:1}
+.ficha[hidden]{display:none!important}
+.f-bg{position:absolute;inset:-60px;background:center/cover no-repeat;filter:blur(38px) brightness(.32) saturate(1.3)}
+.f-scroll{position:relative;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(14px + env(safe-area-inset-top,0px)) 18px calc(34px + env(safe-area-inset-bottom,0px));display:grid;justify-items:center;align-content:start;gap:14px;text-align:center;color:#fff;box-sizing:border-box}
+.f-x{position:sticky;top:0;justify-self:end;z-index:3;width:44px;height:44px;border:1px solid rgba(255,255,255,.45);background:rgba(0,0,0,.55);color:#fff;font-size:18px;cursor:pointer}
+.f-media{position:relative;width:min(100%,440px);margin-top:-34px;min-height:200px;display:grid;place-items:center;touch-action:pan-y}
+.f-img{max-width:100%;max-height:min(62vh,600px);object-fit:contain;border-radius:4px;box-shadow:0 22px 60px rgba(0,0,0,.75),0 0 0 1px rgba(159,208,255,.25),0 0 34px rgba(47,134,216,.35)}
+.f-nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border:1px solid rgba(255,255,255,.45);background:rgba(0,0,0,.55);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.f-prev{left:-6px}.f-next{right:-6px}
+.f-thumbs{display:flex;gap:8px;justify-content:center}
+.f-thumbs button{width:58px;aspect-ratio:3/4;padding:3px;border:1px solid #2a2d33;background:#000;color:#9aa3ae;display:grid;gap:2px;justify-items:center;font:500 8.5px var(--cap);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.f-thumbs img{width:100%;height:calc(100% - 12px);object-fit:cover}
+.f-thumbs button[aria-current="true"]{border-color:#9fd0ff;color:#fff;box-shadow:0 0 12px rgba(47,134,216,.6)}
+.f-body{display:grid;gap:10px;justify-items:center;max-width:520px}
+.f-pre{margin:6px 0 0;font:500 11px var(--cap);letter-spacing:.38em;text-transform:uppercase;color:#bfe3ff}
+.f-title{margin:0;font:400 clamp(46px,13vw,84px)/.88 var(--display);letter-spacing:.02em;text-transform:uppercase;color:#fff;text-shadow:0 0 30px rgba(47,134,216,.5);overflow-wrap:anywhere}
+.f-code{margin:0;font:500 12px var(--cap);letter-spacing:.4em;color:#8fc8ff}
+.f-syn-l{margin:8px 0 0;font:500 10px var(--cap);letter-spacing:.42em;text-transform:uppercase;color:#fff;opacity:.7}
+.f-syn{margin:0;font-size:16px;line-height:1.55;color:#fff;max-width:42ch}
+.f-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.f-buy[disabled]{opacity:.6;cursor:not-allowed}
+.f-soon{margin:0;font:500 10px var(--cap);letter-spacing:.3em;text-transform:uppercase;color:#ffb38a}
+.f-to{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.f-link{background:none;border:0;color:#fff;font:500 11px var(--cap);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;opacity:.85;padding:8px 0}
+.f-link:hover{opacity:1;color:#8fc8ff}
+#zoom{z-index:70!important}
+@media (min-width:900px){
+  .f-scroll{grid-template-columns:minmax(0,440px) minmax(0,460px);justify-content:center;align-content:center;column-gap:60px;row-gap:12px}
+  .f-x{position:absolute;top:24px;right:24px}
+  .f-media{grid-column:1;grid-row:1;margin:0}
+  .f-thumbs{grid-column:1;grid-row:2}
+  .f-body{grid-column:2;grid-row:1/3;align-self:center;justify-items:start;text-align:left}
+  .f-btns,.f-to{justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){html #site #shirts .cat .shirt,.ficha{transition:none!important}}
+/* ===== Títulos de sala sin marquesina ===== */
+html #site #shirts .cat-head{margin:0 0 4px!important;padding:0!important;border:0!important}
+html #site #shirts .neon-sala{aspect-ratio:auto!important;background:none!important;width:100%!important;max-width:none!important;display:flex!important;flex-direction:column;align-items:center;gap:6px;padding:8px 0 0!important;margin:0 auto!important;filter:none!important;animation:none!important}
+html #site #shirts .neon-sala>*{position:static!important;left:auto!important;right:auto!important;top:auto!important;height:auto!important;padding:0!important;margin:0!important;text-align:center!important;width:auto!important}
+html #site #shirts .neon-sala .sala,html #site #shirts .neon-sala .cat-n{font:500 11px/1.2 var(--cap)!important;letter-spacing:.38em!important;text-transform:uppercase;color:#bfe3ff!important;text-shadow:none!important}
+html #site #shirts .neon-sala .sala::after,html #site #shirts .neon-sala .cat-t::before,html #site #shirts .neon-sala .cat-t::after{content:none!important;display:none!important}
+html #site #shirts .neon-sala .cat-t{display:block!important;font:400 clamp(38px,11vw,62px)/.95 var(--display)!important;letter-spacing:.04em!important;color:#fff!important;white-space:normal!important;text-shadow:0 0 24px rgba(47,134,216,.55)!important}
+html #site #shirts .neon-sala .cat-n{order:3}
+html #site #shirts .neon-sala::after{content:"";order:4;width:56px;height:2px;margin-top:6px;border-radius:2px;background:#5cb4ff;box-shadow:0 0 10px 1px rgba(47,134,216,.9)}
+/* iconos de neón de cada sala */
+html #site #shirts .neon-sala::before{content:"";order:-1;width:72px;height:72px;margin-bottom:4px;background:center/contain no-repeat;filter:drop-shadow(0 0 8px rgba(47,134,216,.6))}
+html #site #shirts #cat-cine .neon-sala::before,html #site #shirts [data-cat="cine"] .neon-sala::before{background-image:url(ic-cat-cine.webp)}
+html #site #shirts #cat-series .neon-sala::before,html #site #shirts [data-cat="series"] .neon-sala::before{background-image:url(ic-cat-series.webp)}
+html #site #shirts #cat-dibujos .neon-sala::before,html #site #shirts [data-cat="dibujos"] .neon-sala::before{background-image:url(ic-cat-dibujos.webp)}
+html #site #shirts #cat-anime .neon-sala::before,html #site #shirts [data-cat="anime"] .neon-sala::before{background-image:url(ic-cat-anime.webp)}
+@media (min-width:900px){html #site #shirts .neon-sala::before{width:84px;height:84px}}
+/* icono a la izquierda del nombre */
+html #site #shirts .neon-sala{display:grid!important;grid-template-columns:auto auto;grid-template-areas:"sala sala" "ico tit" "num num" "lin lin";justify-content:center;align-items:center;column-gap:12px;row-gap:6px}
+html #site #shirts .neon-sala .sala{grid-area:sala;justify-self:center}
+html #site #shirts .neon-sala::before{grid-area:ico;width:52px;height:52px;margin:0}
+html #site #shirts .neon-sala .cat-t{grid-area:tit;text-align:left!important}
+html #site #shirts .neon-sala .cat-n{grid-area:num;justify-self:center}
+html #site #shirts .neon-sala::after{grid-area:lin;justify-self:center}
+@media (min-width:900px){html #site #shirts .neon-sala::before{width:64px;height:64px}}
+html #site #shirts .neon-sala::before{width:clamp(38px,11vw,62px)!important;height:clamp(38px,11vw,62px)!important}
+/* debajo de cada camiseta: título + entrada «Ver» */
+html #site #shirts .shirt .code{display:none!important}
+html #site #shirts .shirt .info>div[style]{display:grid!important;justify-items:center;gap:10px!important}
+html #site #shirts .shirt .r-ver{min-height:40px!important;padding:9px 34px!important;font-size:13px!important;letter-spacing:.3em!important}
+html #site #shirts .shirt.is-c .stage img{animation:galFade .5s ease}
+@keyframes galFade{from{opacity:.25}to{opacity:1}}
+/* que ninguna vista se salga del marco */
+html #site #shirts .shirt .stage{overflow:hidden!important}
+html #site #shirts .shirt .stage>img{left:8.6%!important;top:6.4%!important;right:auto!important;bottom:auto!important;width:82.8%!important;height:87.2%!important;max-width:none!important;object-fit:contain!important;transform:none!important;padding:0!important;margin:0!important}
+html #site #shirts .shirt .stage .crop{overflow:hidden!important}
+html #site #shirts .shirt .stage .crop img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;transform:none!important}
+html #site #shirts .shirt .stage>img{background:#000!important;border-radius:3px}
+html #site #shirts .shirt .stage::before{content:"";position:absolute;left:8.6%;top:6.4%;width:82.8%;height:87.2%;background:#000;border-radius:3px;z-index:0;opacity:1!important;filter:none!important}
+.f-bar{display:inline-flex!important;align-items:center;gap:10px;min-height:46px;padding:8px 20px!important;border-radius:999px!important;border:1px solid rgba(230,178,76,.55)!important;background:rgba(230,178,76,.12)!important;color:#f3d48a!important;font:600 14px var(--body)!important;letter-spacing:0!important;text-transform:none!important;cursor:pointer}
+.f-bar img{height:26px;width:auto}

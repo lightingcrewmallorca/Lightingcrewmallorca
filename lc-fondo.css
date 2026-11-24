@@ -1,0 +1,24 @@
+/* ===== Fondo con luz de sala (azul arriba, dorado abajo) ===== */
+html{background:#05070c!important}
+body{background:transparent!important}
+html #site::before{background:
+    radial-gradient(200% 70% at 50% -12%,rgba(45,120,225,.5),rgba(45,120,225,.14) 50%,rgba(0,0,0,0) 80%),
+    radial-gradient(200% 45% at 50% 112%,rgba(225,155,55,.26),rgba(225,155,55,.07) 50%,rgba(0,0,0,0) 80%),
+    linear-gradient(180deg,#081022 0%,#060a14 45%,#0a0810 100%)!important}
+/* sin cajas negras sobre el fondo nuevo */
+html #site .shirt{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+html #site .filters{background:rgba(6,10,20,.72)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom-color:rgba(255,255,255,.06)!important}
+html #site .drop{background-color:transparent}
+/* barras de arriba y abajo: cristal azul noche en vez de negro */
+html #site .appbar{background:rgba(6,10,22,.6)!important;-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border-bottom-color:rgba(255,255,255,.06)!important}
+html #site nav.jump.tabbar{background:rgba(6,10,22,.7)!important;-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3)}
+/* marquesina de camisetas: su fondo negro desaparece sobre el azul */
+html #site #camisetas .marquee{mix-blend-mode:screen}
+html #site #camisetas>.sec-head{background:none!important}
+/* camiseta destacada: sin el bloque oscuro de fondo, flota sobre la luz de la sala */
+html #site .estreno{background:none!important;box-shadow:none!important;border:0!important}
+html #site .estreno::before,html #site .estreno::after{background:none!important;box-shadow:none!important}
+/* camiseta destacada: quitada de momento */
+html #site #estreno,html #site .estreno{display:none!important}
+/* foto "En el set" al final de Camisetas: quitada */
+html #site figure.band{display:none!important}

@@ -1,0 +1,43 @@
+/* ===== Camisetas Crew ===== */
+#crew>.sec-head .neon-head,#crew>.sec-head>h2:not(.cr-title){display:none!important}
+#crew>.sec-head{display:flex!important;flex-direction:column;align-items:center;text-align:center;background:none!important}
+/* un solo bloque, sin caja, con los haces de luz al encender */
+html #site #crew .drop{display:block!important;border:0!important;border-image:none!important;background:none!important;box-shadow:none!important;padding:6px 0 10px!important;overflow:visible!important;max-width:980px!important;margin:0 auto!important;position:relative}
+html #site #crew .drop[data-on="true"]{background:none!important}
+html #site #crew .drop[hidden]{display:none!important}
+#crew .filmsep{display:none!important}
+html #site #crew .drop-copy{display:flex!important;flex-direction:column;align-items:center;text-align:center;gap:0!important;position:relative;z-index:2}
+html #site #crew .drop-tag{order:1;margin:0 0 12px!important}
+html #site #crew .drop-title{order:2;margin:0 0 8px!important;text-align:center}
+.cr-row{order:3;position:relative;display:grid;grid-template-columns:clamp(84px,24vw,130px) minmax(0,1fr);align-items:center;gap:clamp(10px,4vw,40px);width:100%;max-width:760px;margin:0 auto}
+html #site #crew .cr-row .drop-stage{order:2!important;position:relative;z-index:1;display:block!important;width:100%!important;max-width:560px;margin:0!important;justify-self:start}
+html #site #crew .cr-row .hoodie{width:100%!important;max-width:none!important}
+.cr-side{min-width:0}
+.cr-side{order:1;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:14px;padding-right:2px}
+html #site #crew .cr-side .plate{transform:none!important;margin:0!important;width:clamp(78px,22vw,120px)!important;height:auto!important;aspect-ratio:112/159}
+html #site #crew .drop-hint{margin:0!important;max-width:100%;font:600 12px/1.35 var(--cap)!important;letter-spacing:.18em!important;color:#bfe3ff!important;text-align:center}
+html #site #crew .drop-txt{order:4;margin:22px auto 0!important;max-width:36ch}
+html #site #crew .drop-art{order:5;margin:18px auto 0!important}
+/* selector sudadera / camiseta */
+.cr-pick{display:flex;width:max-content;margin:18px auto 6px;padding:4px;border-radius:999px;border:1px solid var(--line);background:rgba(10,14,24,.6);gap:4px}
+.cr-pick button{min-height:42px;padding:8px 20px;border:0;border-radius:999px;background:transparent;color:var(--muted);font:600 15px var(--body);cursor:pointer}
+.cr-pick button[aria-pressed="true"]{background:var(--gold);color:#151007}
+/* próximos estrenos: carteles vacíos con el marco de neón */
+html #site #crew .proximos h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,7vw,40px);letter-spacing:.04em;color:#fff;text-shadow:0 0 24px rgba(47,134,216,.55);margin:30px 0 0}
+html #site #crew .pr-row{display:flex;gap:12px;justify-content:center;flex-wrap:nowrap;width:100%}
+html #site #crew .pr-box{flex:1 1 0;max-width:180px;aspect-ratio:2/3!important;background:url(lb-neon.webp) center/100% 100% no-repeat!important;filter:none!important;opacity:.85}
+html #site #crew .pr-box span{font:500 11px/1.3 var(--cap);letter-spacing:.24em;text-transform:uppercase;color:#bfe3ff;padding:0 18%;text-align:center}
+/* los diseños de compañeros no van aquí: fuera "Próximos estrenos" */
+html #site #crew #crew-grid{display:none!important}
+#crew .tagline .tag-big>span:first-child{color:#fff!important;text-shadow:none}
+#crew .cr-title{flex-direction:column;gap:.25em}#crew .cr-title .cr-ic{height:1.9em}
+
+/* haces: fuera, se montaban sobre el título y el selector */
+html #site #crew .drop-beams{display:none!important}
+/* dar la vuelta con la luz encendida */
+html #site #crew .hoodie{transition:transform .9s cubic-bezier(.6,.05,.25,1)!important}
+html #site #crew .drop[data-on="true"].cr-front .hoodie{transform:rotateY(360deg)!important}
+.cr-flip{order:4;display:inline-flex;align-items:center;gap:8px;margin:16px auto 0;min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid rgba(143,205,255,.5);background:rgba(10,20,40,.55);color:#cfe8ff;font:600 14px var(--body);cursor:pointer}
+.cr-flip[hidden]{display:none}
+.cr-flip svg{width:18px;height:18px}
+.cr-flip:hover{border-color:#8fcdff;background:rgba(47,134,216,.25)}

@@ -1,0 +1,45 @@
+/* ===== Termos y Tazas: el bar del cine ===== */
+#termos>.sec-head,#tazas>.sec-head{display:flex!important;flex-direction:column;align-items:center;text-align:center;background:none!important}
+#termos .h-badge:not(.tw-title),#tazas .h-badge:not(.tw-title){display:none!important}
+.br-soon{display:inline-block;margin:2px auto 10px;padding:7px 18px;font:700 12px/1 var(--cap);letter-spacing:.22em;text-transform:uppercase;color:#151007;
+  background:linear-gradient(#f0c766,#d99e2e);border-radius:6px;box-shadow:0 0 16px rgba(230,178,76,.35);
+  -webkit-mask:radial-gradient(circle 6px at 0 50%,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,#0000 96%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 6px at 0 50%,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,#0000 96%,#000) right/51% 100% no-repeat}
+#termos .sec-head p,#tazas .sec-head p{margin:0 auto;max-width:44ch;color:var(--muted)}
+/* escenario: la barra del bar */
+html #site #termos .bottle-wrap,html #site #tazas .bottle-wrap{grid-template-columns:minmax(0,1fr)!important;max-width:560px;gap:18px;margin:18px auto 0}
+@media (min-width:900px){html #site #termos .bottle-wrap,html #site #tazas .bottle-wrap{grid-template-columns:minmax(0,440px) minmax(0,1fr)!important;max-width:1000px;align-items:start}}
+html #site #termos .bottle-stage,html #site #tazas .bottle-stage{background:none!important;border:0!important;padding:0!important;gap:12px}
+#bottle,#mug{width:100%!important;max-width:440px!important;border-radius:18px;box-shadow:0 0 0 1px rgba(230,178,76,.25),0 22px 50px rgba(0,0,0,.6)}
+html #site #termos .spin-row .btn,html #site #tazas .spin-row .btn{border-radius:999px!important;min-height:40px;padding:8px 16px!important;background:rgba(10,14,24,.6)!important;border:1px solid var(--line)!important;color:var(--ink)!important;font:600 13px var(--body)!important;letter-spacing:0!important;text-transform:none!important}
+html #site #termos .spin-row .btn[aria-pressed="true"],html #site #tazas .spin-row .btn[aria-pressed="true"]{background:var(--gold)!important;border-color:var(--gold)!important;color:#151007!important}
+#termos .hint-drag,#tazas .hint-drag{font:600 12px var(--cap);letter-spacing:.18em;text-transform:uppercase;color:#bfe3ff}
+/* controles */
+html #site #termos .ctl-block,html #site #tazas .ctl-block{background:rgba(10,14,24,.55)!important;border:1px solid var(--line)!important;border-radius:18px!important;padding:16px!important}
+#termos .ctl-t,#tazas .ctl-t{color:var(--gold);font:700 12px var(--cap);letter-spacing:.16em}
+#termos .ctl-name,#tazas .ctl-name{font-family:var(--display);font-size:clamp(22px,6vw,28px)}
+html #site #termos .b-thumbs,html #site #tazas .b-thumbs{grid-auto-columns:84px!important;gap:10px!important;padding:6px 4px 10px!important;scroll-snap-type:x proximity}
+html #site #termos .b-thumbs button,html #site #tazas .b-thumbs button{scroll-snap-align:center;aspect-ratio:3/4;border:0!important;border-radius:6px!important;padding:12% 10%!important;background:#000 url(lb-neon.webp) center/100% 100% no-repeat!important;opacity:.55;transition:opacity .2s,transform .2s}
+html #site #termos .b-thumbs button[aria-selected="true"],html #site #tazas .b-thumbs button[aria-selected="true"]{opacity:1;transform:scale(1.06);box-shadow:0 0 18px rgba(47,134,216,.55)!important}
+#termos .bottle-ctl label,#tazas .bottle-ctl label{display:grid;gap:8px;font:600 13px var(--body);color:var(--ink)}
+#termos input[type=range],#tazas input[type=range]{accent-color:var(--gold)!important;width:100%}
+/* logo de atrás como interruptor */
+#termos .chk input,#tazas .chk input{-webkit-appearance:none;appearance:none;flex:none;width:46px;height:26px;border-radius:999px;background:#2a2d36;position:relative;cursor:pointer;transition:background .2s;margin:0}
+#termos .chk input::after,#tazas .chk input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+#termos .chk input:checked,#tazas .chk input:checked{background:var(--gold)}
+#termos .chk input:checked::after,#tazas .chk input:checked::after{transform:translateX(20px)}
+#termos .chk,#tazas .chk{font-size:14px!important;gap:12px!important}
+/* paso termo <-> taza */
+.br-swap{display:flex;justify-content:center;margin-top:4px}
+.br-swap button{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:8px 20px;border-radius:999px;border:1px solid rgba(143,205,255,.45);background:rgba(10,20,40,.55);color:#cfe8ff;font:600 14px var(--body);cursor:pointer}
+.br-swap img{height:28px;width:auto}
+.br-swap button:hover{border-color:#8fcdff;background:rgba(47,134,216,.25)}
+.br-pick{margin:12px auto 4px!important}
+/* cartel "pásate por el bar" al final de Camisetas */
+.br-banner{position:relative;max-width:720px;margin:14px auto 22px;border-radius:20px;overflow:hidden;min-height:190px;display:flex;align-items:flex-end;justify-content:center;text-align:center;
+  background:linear-gradient(to bottom,rgba(5,7,12,.15),rgba(5,7,12,.85) 70%),url(bar-banner.webp) center/cover no-repeat;box-shadow:0 0 0 1px rgba(230,178,76,.3),0 20px 44px rgba(0,0,0,.55)}
+.br-b-tx{padding:18px 18px 18px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.br-b-tx img{height:40px;width:auto}
+.br-b-tx h3{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(22px,6vw,32px);line-height:1.05;color:#fff;text-shadow:0 0 22px rgba(47,134,216,.6)}
+.br-b-tx p{margin:0;color:#dcd6c8;max-width:36ch}
+.br-b-tx button{margin-top:8px;min-height:46px;padding:10px 26px;border-radius:999px;border:0;background:linear-gradient(#f0c766,#d99e2e);color:#151007;font:700 15px var(--body);cursor:pointer;box-shadow:0 0 18px rgba(230,178,76,.4)}
