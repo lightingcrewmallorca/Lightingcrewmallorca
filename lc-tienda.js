@@ -1,7 +1,7 @@
 /* ===== Tienda: comprar los diseños de la sección Camisetas ===== */
 (function(){
   // diseños con archivo de impresión listo (print/LCM-xx.png). Se añaden a medida que llegan.
-  var DISPONIBLES=["LCM-01","LCM-02","LCM-03","LCM-04","LCM-05","LCM-06","LCM-07","LCM-08","LCM-09","LCM-10","LCM-11","LCM-12","LCM-13","LCM-14","LCM-15","LCM-16","LCM-17","LCM-18","LCM-19"];
+  var DISPONIBLES=["LCM-01","LCM-02","LCM-03","LCM-04","LCM-05","LCM-06","LCM-07","LCM-08","LCM-09","LCM-10","LCM-11","LCM-12","LCM-13","LCM-14","LCM-15","LCM-16","LCM-17","LCM-18","LCM-19","LCM-20","LCM-21","LCM-22","LCM-23","LCM-24","LCM-25","LCM-26","LCM-27","LCM-28","LCM-29","LCM-30","LCM-31","LCM-32","LCM-33","LCM-34","LCM-35"];
   var LINK="https://buy.stripe.com/9B69ASbkF3K9efn36D6oo00", PRECIO="29 €";
   var SIZES=["S","M","L","XL","XXL","3XL"];
   if(window.LCI)LCI.add({"Elige tu talla":["Choose your size","Tria la teva talla","Wähle deine Größe"],
