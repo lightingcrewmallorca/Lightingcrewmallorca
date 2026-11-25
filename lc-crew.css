@@ -30,7 +30,7 @@ html #site #crew .pr-box span{font:500 11px/1.3 var(--cap);letter-spacing:.24em;
 /* los diseños de compañeros no van aquí: fuera "Próximos estrenos" */
 html #site #crew #crew-grid{display:none!important}
 #crew .tagline .tag-big>span:first-child{color:#fff!important;text-shadow:none}
-#crew .cr-title{flex-direction:column;gap:.25em}#crew .cr-title .cr-ic{height:1.9em}
+#crew .cr-title{flex-direction:column;gap:.25em}#crew .cr-title .cr-ic{height:2.8em;width:auto;filter:drop-shadow(0 0 10px rgba(47,134,216,.45))}
 
 /* haces: fuera, se montaban sobre el título y el selector */
 html #site #crew .drop-beams{display:none!important}
