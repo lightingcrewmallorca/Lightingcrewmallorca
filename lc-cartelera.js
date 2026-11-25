@@ -31,6 +31,11 @@
       pv.addEventListener("click",function(){step(-1)});nx.addEventListener("click",function(){step(1)});
       var raf=0;row.addEventListener("scroll",function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){mark(row)})},{passive:true});
       mark(row);
+      // al entrar, empezar en la segunda camiseta para que haya carteles a los dos lados
+      var ctr=function(){if(row.dataset.ctr||!row.clientWidth)return;var cs=row.querySelectorAll(".shirt"),c=cs[cs.length>2?1:0];if(!c)return;
+        row.style.scrollSnapType="none";row.scrollLeft=c.offsetLeft+c.offsetWidth/2-row.clientWidth/2;row.dataset.ctr="1";mark(row);
+        requestAnimationFrame(function(){row.style.scrollSnapType=""})};
+      ctr();if(window.ResizeObserver)new ResizeObserver(ctr).observe(row);
     });
   }
   rows();setTimeout(rows,300);
