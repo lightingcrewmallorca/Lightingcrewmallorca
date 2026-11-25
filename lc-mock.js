@@ -17,4 +17,16 @@
     var st=c.querySelector(".stage"),k=st&&st.dataset.side,img=st&&st.querySelector("img");
     if(img&&k&&d.views[k]){img.src=d.views[k].src;img.style.objectPosition=d.views[k].pos}
   });
+
+  // las tarjetas guardan su propia copia de las vistas: corregir cada imagen que pinten
+  var byName={};designs.forEach(function(d){byName[d.name]=d});
+  function fix(st){
+    var c=st.closest(".shirt"),h=c&&c.querySelector("h3"),d=h&&byName[h.textContent.trim()],k=st.dataset.side,img=st.querySelector("img");
+    if(!d||!img||!k||!d.views[k])return;
+    if(img.getAttribute("src")!==d.views[k].src){img.setAttribute("src",d.views[k].src);img.style.objectPosition=d.views[k].pos||"50% 50%"}
+  }
+  var mo=new MutationObserver(function(ms){ms.forEach(function(m){var st=m.target.closest&&m.target.closest(".stage");if(st)fix(st)})});
+  document.querySelectorAll(".shirt .stage").forEach(function(st){fix(st);mo.observe(st,{childList:true})});
+  // "Ver en grande" también con las fotos nuevas
+  if(typeof window.openZoom==="function"){var oz=window.openZoom;window.openZoom=function(d,st){return oz(d&&byName[d.name]||d,st)};try{openZoom=window.openZoom}catch(e){}}
 })();
