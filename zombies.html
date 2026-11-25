@@ -915,7 +915,7 @@ function layout(){
   dpr=Math.min(window.devicePixelRatio||1,2);VW=cv.clientWidth||innerWidth;VH=cv.clientHeight||innerHeight;
   cv.width=Math.round(VW*dpr);cv.height=Math.round(VH*dpr);
   // siempre una pantalla de móvil vertical: en el ordenador, un teléfono centrado
-  FRAMED=VW/VH>.62;
+  FRAMED=VW/VH>.62&&VW>560; // en el móvil, aunque sobre ancho, ocupar todo el hueco
   if(FRAMED){H=Math.round(VH*.95);W=Math.round(H*9/19);}else{W=VW;H=VH;}
   OX=Math.round((VW-W)/2);OY=Math.round((VH-H)/2);
   for(const id of ['card','start','rank','maps','pause','help','revive','buy','guide','bdg','menu','skins','runPick','runHand','heroSkins','quest','achv','loginRw','pass','album']){const cd=$(id).style;cd.left=OX+'px';cd.top=OY+'px';cd.width=W+'px';cd.height=H+'px';cd.right='auto';cd.bottom='auto';cd.borderRadius=FRAMED?'30px':'0';cd.overflow='hidden';}

@@ -4,9 +4,13 @@
   var root=document.documentElement;
   var ios=/iP(hone|od|ad)/.test(navigator.platform)||(/Mac/.test(navigator.platform)&&navigator.maxTouchPoints>1)||/iPhone|iPad|iPod/.test(navigator.userAgent);
   var standalone=navigator.standalone===true||matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches;
+  // Safari de iOS 26 o superior: la barra de abajo flota ENCIMA de la web, hay que dejarle sitio
+  var m=/Version\/(\d+)/.exec(navigator.userAgent),floatBar=ios&&!standalone&&m&&+m[1]>=26;
+  if(ios&&!standalone&&!m)floatBar=true; // Chrome/otros en iPhone también usan barra flotante
   function fit(){
     var vv=window.visualViewport,h=vv?vv.height:innerHeight,t=vv?vv.offsetTop:0;
     ov.style.top=t+"px";ov.style.height=h+"px";ov.style.bottom="auto";
+    ov.style.paddingBottom=floatBar?"74px":"";
   }
   function onOpen(){
     root.classList.add("game-on");fit();
