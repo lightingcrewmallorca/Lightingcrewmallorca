@@ -22,3 +22,5 @@ html #site .estreno::before,html #site .estreno::after{background:none!important
 html #site #estreno,html #site .estreno{display:none!important}
 /* foto "En el set" al final de Camisetas: quitada */
 html #site figure.band{display:none!important}
+/* cabecera Camisetas: el humo de arriba se funde en vez de cortarse en línea recta */
+html #site #camisetas .marquee{-webkit-mask:linear-gradient(transparent 6%,#000 36%),linear-gradient(90deg,transparent 30%,#000 40%,#000 60%,transparent 70%);mask:linear-gradient(transparent 6%,#000 36%),linear-gradient(90deg,transparent 30%,#000 40%,#000 60%,transparent 70%)}
