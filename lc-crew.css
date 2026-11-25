@@ -50,3 +50,14 @@ html #site #crew .drop[data-on="true"].cr-front .hoodie{transform:rotateY(360deg
 .cr-buy-btn:hover{transform:translateY(-1px);box-shadow:0 0 0 1px #ffe3a6,0 0 36px rgba(255,190,70,.65)}
 .cr-buy-btn:active{transform:scale(.97)}
 .cr-buy-note{margin:0;font:500 13px/1.5 var(--body);color:var(--muted);max-width:34ch}
+
+.cr-size-lbl{margin:4px 0 0;font:600 12px/1 var(--cap);letter-spacing:.2em;text-transform:uppercase;color:#bfe3ff}
+.cr-size-lbl.cr-warn{color:#ffd27a;animation:crShake .4s}
+@keyframes crShake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+.cr-sizes{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:330px}
+.cr-sizes button{min-width:48px;min-height:44px;padding:6px 10px;border-radius:12px;border:1px solid rgba(143,205,255,.45);background:rgba(10,20,40,.55);color:#e6f3ff;font:700 15px var(--body);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s}
+.cr-sizes button:hover{border-color:#8fcdff}
+.cr-sizes button[aria-pressed="true"]{background:#2f86d8;border-color:#8fcdff;color:#fff;box-shadow:0 0 16px rgba(47,134,216,.7)}
+.cr-buy-btn[aria-disabled="true"]{opacity:.45;filter:saturate(.6);box-shadow:none}
+.cr-sizes{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));width:min(100%,360px);gap:6px}
+.cr-sizes button{min-width:0;padding:6px 2px;font-size:14px}

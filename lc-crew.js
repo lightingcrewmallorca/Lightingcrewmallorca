@@ -53,13 +53,27 @@
   var BUY=[{u:"https://buy.stripe.com/5kQ8wOewR1C1fjr6iP6oo01",p:"43 €",r:"crew-sudadera"},
            {u:"https://buy.stripe.com/9B69ASbkF3K9efn36D6oo00",p:"29 €",r:"crew-camiseta"}];
   if(window.LCI)LCI.add({"Comprar":["Buy","Comprar","Kaufen"],"Tallas S a 3XL · Envío a España incluido":["Sizes S to 3XL · Shipping to Spain included","Talles S a 3XL · Enviament a Espanya inclòs","Größen S bis 3XL · Versand nach Spanien inklusive"],
+    "Elige tu talla":["Choose your size","Tria la teva talla","Wähle deine Größe"],"Envío a España incluido":["Shipping to Spain included","Enviament a Espanya inclòs","Versand nach Spanien inklusive"],
     "Se imprime bajo pedido y llega en 1–2 semanas.":["Printed on demand, arrives in 1–2 weeks.","S'imprimeix sota comanda i arriba en 1–2 setmanes.","Wird auf Bestellung gedruckt, Lieferung in 1–2 Wochen."]});
   drops.forEach(function(d,k){
     var b=BUY[k],copy=d.querySelector(".drop-copy");if(!b||!copy||d.querySelector(".cr-buy"))return;
     var box=document.createElement("div");box.className="cr-buy";
+    var SIZES=["S","M","L","XL","XXL","3XL"];
     box.innerHTML='<div class="cr-price">'+b.p+'</div>'+
-      '<a class="cr-buy-btn" href="'+b.u+'?client_reference_id='+b.r+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h13l-1.5 8.5H7.5L6 4H3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></svg><span>Comprar</span></a>'+
-      '<p class="cr-buy-note"><span>Tallas S a 3XL · Envío a España incluido</span><br><span>Se imprime bajo pedido y llega en 1–2 semanas.</span></p>';
+      '<p class="cr-size-lbl"><span>Elige tu talla</span></p>'+
+      '<div class="cr-sizes" role="group">'+SIZES.map(function(s){return '<button type="button" aria-pressed="false" data-s="'+s+'">'+s+'</button>'}).join("")+'</div>'+
+      '<a class="cr-buy-btn" aria-disabled="true" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h13l-1.5 8.5H7.5L6 4H3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></svg><span>Comprar</span></a>'+
+      '<p class="cr-buy-note"><span>Envío a España incluido</span><br><span>Se imprime bajo pedido y llega en 1–2 semanas.</span></p>';
+    var a=box.querySelector(".cr-buy-btn"),lbl=box.querySelector(".cr-size-lbl");
+    box.querySelector(".cr-sizes").addEventListener("click",function(e){
+      var s=e.target.closest("button");if(!s)return;
+      box.querySelectorAll(".cr-sizes button").forEach(function(x){x.setAttribute("aria-pressed",x===s)});
+      a.href=b.u+"?client_reference_id="+b.r+"_talla-"+s.dataset.s;
+      a.removeAttribute("aria-disabled");lbl.classList.remove("cr-warn");
+    });
+    a.addEventListener("click",function(e){
+      if(a.hasAttribute("aria-disabled")){e.preventDefault();lbl.classList.remove("cr-warn");void lbl.offsetWidth;lbl.classList.add("cr-warn")}
+    });
     copy.appendChild(box);
   });
   if(drops.length<2)return;
