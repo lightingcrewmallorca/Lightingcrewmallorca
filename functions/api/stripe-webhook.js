@@ -20,7 +20,7 @@ const PRODUCTS = {
 const DESIGN_BASE = 'Camiseta Lighting Crew Mallorca';
 const DESIGN_UNIT = 2900;
 // posición en la zona de impresión de Printful (150 unidades por pulgada; 1800x2400 = 12x16 in)
-const POS_FRONT = { area_width: 1800, area_height: 2400, width: 531, height: 536, top: 150, left: 635 }; // logo de 9 cm en el pecho
+const POS_FRONT = { area_width: 1800, area_height: 2400, width: 531, height: 536, top: 450, left: 635 }; // logo de 9 cm a la altura del pecho
 const POS_BACK = { area_width: 1800, area_height: 2400, width: 1800, height: 2400, top: 0, left: 0 };    // lienzo 3600x4800 = toda la espalda
 const SIZES = { S: 'S', M: 'M', L: 'L', XL: 'XL', XXL: '2XL', '2XL': '2XL', '3XL': '3XL' };
 const TOLERANCE_S = 300; // firma válida durante 5 minutos
