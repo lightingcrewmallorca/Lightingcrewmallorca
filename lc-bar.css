@@ -58,3 +58,8 @@ html #site #shirts .cat .br-card:hover,html #site #shirts .cat .br-card:focus-vi
 .br-card strong{font:400 clamp(22px,6vw,28px)/1.05 var(--display,inherit);letter-spacing:.04em;color:#ffd27a;text-shadow:0 0 14px rgba(255,180,60,.5)}
 .br-card em{font:normal 500 13px var(--body,inherit);color:var(--muted,#bbb)}
 .br-card i{margin-top:8px;font:normal 700 13px var(--body,inherit);letter-spacing:.08em;text-transform:uppercase;color:#151007;background:linear-gradient(180deg,#ffd77f,#e9a93a);padding:9px 18px;border-radius:999px}
+/* cartel del bar con termo o taza de ejemplo */
+.br-card .br-c-img{background-position:center top!important;background-size:cover!important}
+.br-card .br-c-img::after{background:linear-gradient(180deg,rgba(8,6,4,0) 0%,rgba(8,6,4,0) 52%,rgba(8,6,4,.85) 72%,rgba(8,6,4,.96) 100%)!important}
+.br-card .br-c-tx{padding:10px 10px 16px!important;gap:2px!important}
+.br-card .br-c-tx img{display:none}

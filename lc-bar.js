@@ -42,6 +42,8 @@
       if(row.querySelector(".br-card"))return;var cs=row.querySelectorAll(".shirt");if(cs.length<2)return;
       var k=document.createElement("button");k.type="button";k.className="br-card";
       k.innerHTML='<span class="br-c-img" aria-hidden="true"></span><span class="br-c-tx"><img src="bar-i-taza.webp" alt=""><b><span>Ahora también</span></b><strong><span>en taza y termo</span></strong><em><span>Prueba cualquier diseño</span></em><i><span>Pasar al bar</span></i></span>';
+      var CATS=['cine','series','dibujos','anime'],sec=row.closest('.cat'),ci=[].indexOf.call(document.querySelectorAll('#shirts .cat'),sec),cat=(sec&&sec.dataset.cat)||CATS[ci]||'cine';if(CATS.indexOf(cat)<0)cat=CATS[ci%4];
+      k.querySelector('.br-c-img').style.backgroundImage='url(br-card-'+cat+'.webp)';
       k.addEventListener("click",goBar);var ref=cs[Math.min(3,cs.length-1)];ref.after(k);
     });
     if(window.LCI)LCI.refresh();
