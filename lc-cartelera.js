@@ -67,7 +67,7 @@
     list=ORDER.filter(function(k){return cur.views&&cur.views[k]}).map(function(k){return{src:cur.views[k].src,l:LBL[k],k:k}});
     var cat=c.closest(".cat"),sala=cat&&cat.querySelector(".sala"),ct=cat&&cat.querySelector(".cat-t");
     q(".f-pre").textContent=(sala?sala.textContent.replace(/\s+/g," ").trim():"")+(ct?" · "+ct.textContent.trim():"");
-    q(".f-title").textContent=cur.name;q(".f-code").textContent=cur.code||"";q(".f-syn").textContent=cur.desc||"";q(".f-syn-l").hidden=!cur.desc;
+    q(".f-title").textContent=cur.name;q(".f-code").textContent=cur.code||"";q(".f-syn").textContent=cur.desc||"";q(".f-syn-l").hidden=!cur.desc;if(window.lcShopFicha)window.lcShopFicha(cur,f);
     q(".f-bg").style.backgroundImage='url("'+list[0].src+'")';
     q(".f-thumbs").innerHTML=list.map(function(x){return '<button type="button"><img src="'+x.src+'" alt=""><span>'+x.l+'</span></button>'}).join("");
     f.querySelectorAll(".f-thumbs button").forEach(function(b,k){b.addEventListener("click",function(){show(k)})});

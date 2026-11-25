@@ -5,7 +5,8 @@
 //   STRIPE_WEBHOOK_SECRET   whsec_...   (Stripe > Desarrolladores > Webhooks)
 //   PRINTFUL_TOKEN          token privado de developers.printful.com
 //   PRINTFUL_STORE_ID       opcional, por defecto 19127198 (tienda "Lighting Crew Mallorca")
-//   PRINTFUL_CONFIRM        opcional: "no" deja los pedidos como borrador en Printful
+//   PRINTFUL_CONFIRM        opcional: "no" deja los pedidos del crew como borrador en Printful
+//   DISENOS_CONFIRM         "si" confirma solos los pedidos de diseños (por defecto quedan en borrador)
 //
 // El botón "Comprar" de la web abre el enlace de pago con
 //   client_reference_id = <producto>_talla-<TALLA>   p. ej. crew-camiseta_talla-L
@@ -15,6 +16,12 @@ const PRODUCTS = {
   'crew-camiseta': { name: 'Camiseta Lighting Crew Mallorca', unit: 2900 },
   'crew-sudadera': { name: 'Sudadera Lighting Crew Mallorca', unit: 4300 },
 };
+// los diseños usan la misma camiseta (Bella + Canvas 3001 negra) y el mismo precio que la del crew
+const DESIGN_BASE = 'Camiseta Lighting Crew Mallorca';
+const DESIGN_UNIT = 2900;
+// posición en la zona de impresión de Printful (150 unidades por pulgada; 1800x2400 = 12x16 in)
+const POS_FRONT = { area_width: 1800, area_height: 2400, width: 531, height: 536, top: 150, left: 635 }; // logo de 9 cm en el pecho
+const POS_BACK = { area_width: 1800, area_height: 2400, width: 1800, height: 2400, top: 0, left: 0 };    // lienzo 3600x4800 = toda la espalda
 const SIZES = { S: 'S', M: 'M', L: 'L', XL: 'XL', XXL: '2XL', '2XL': '2XL', '3XL': '3XL' };
 const TOLERANCE_S = 300; // firma válida durante 5 minutos
 
@@ -60,7 +67,7 @@ async function findVariant(env, productName, size) {
   const v = vars.find(v => (v.size || '').toUpperCase() === want) ||
             vars.find(v => (v.name || '').toUpperCase().endsWith('/ ' + want));
   if (!v) throw new Error('talla ' + size + ' no encontrada en ' + productName);
-  return v.id;
+  return v;
 }
 
 export async function onRequestPost({ request, env }) {
@@ -78,7 +85,10 @@ export async function onRequestPost({ request, env }) {
 
   // producto y talla desde la referencia de la web
   const m = /^([a-z0-9-]+)_talla-([A-Z0-9]+)$/i.exec(s.client_reference_id || '');
-  const prod = m && PRODUCTS[m[1]];
+  // diseño de la sección Camisetas: d-LCM-01  -> camiseta negra con logo delante y el dibujo detrás
+  const dm = m && /^d-(lcm-\d{2,3})$/i.exec(m[1]);
+  const design = dm ? dm[1].toUpperCase() : null;
+  const prod = m && (design ? { name: DESIGN_BASE, unit: DESIGN_UNIT, design } : PRODUCTS[m[1]]);
   const size = m && SIZES[m[2].toUpperCase()];
   if (!prod || !size) {
     console.log('PEDIDO MANUAL: referencia no reconocida', s.id, s.client_reference_id);
@@ -100,9 +110,24 @@ export async function onRequestPost({ request, env }) {
     return txt('falta dirección, pedido para hacer a mano');
   }
 
-  let variantId;
-  try { variantId = await findVariant(env, prod.name, size); }
+  let variant;
+  try { variant = await findVariant(env, prod.name, size); }
   catch (e) { console.log('ERROR Printful', s.id, String(e)); return txt('error buscando producto', 500); }
+
+  let item = { sync_variant_id: variant.id, quantity: qty };
+  if (prod.design) {
+    const origin = new URL(request.url).origin;
+    const back = origin + '/print/' + prod.design + '.png', front = origin + '/print/logo-pecho.png';
+    const head = await fetch(back, { method: 'HEAD' }).catch(() => null);
+    if (!head || !head.ok) {
+      console.log('PEDIDO MANUAL: falta el archivo de impresión', prod.design, s.id);
+      return txt('falta archivo de impresión de ' + prod.design + ', pedido para hacer a mano');
+    }
+    item = {
+      variant_id: variant.variant_id, quantity: qty, name: 'Camiseta ' + prod.design,
+      files: [{ type: 'front', url: front, position: POS_FRONT }, { type: 'back', url: back, position: POS_BACK }],
+    };
+  }
 
   // external_id único por pago: evita pedidos duplicados si Stripe reenvía el aviso
   const extId = 'st' + hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s.id))).slice(0, 28);
@@ -120,13 +145,16 @@ export async function onRequestPost({ request, env }) {
       phone: cd.phone || '',
       email: cd.email || '',
     },
-    items: [{ sync_variant_id: variantId, quantity: qty }],
+    items: [item],
     retail_costs: { currency: 'EUR', total: (s.amount_total / 100).toFixed(2) },
   };
-  const confirm = String(env.PRINTFUL_CONFIRM || 'si').toLowerCase() !== 'no';
+  // los diseños quedan como borrador en Printful hasta que DISENOS_CONFIRM = si (para revisar la colocación)
+  const confirm = prod.design
+    ? String(env.DISENOS_CONFIRM || 'no').toLowerCase() === 'si'
+    : String(env.PRINTFUL_CONFIRM || 'si').toLowerCase() !== 'no';
   const r = await pf(env, '/orders' + (confirm ? '?confirm=1' : ''), { method: 'POST', body: JSON.stringify(order) });
   if (r.ok) {
-    console.log('PEDIDO OK', s.id, 'printful', r.j.result?.id, prod.name, size, 'x' + qty);
+    console.log('PEDIDO OK', s.id, 'printful', r.j.result?.id, prod.design || prod.name, size, 'x' + qty, confirm ? '' : '(borrador)');
     return txt('pedido creado en Printful: ' + r.j.result?.id);
   }
   // ya existía (reenvío de Stripe): todo bien

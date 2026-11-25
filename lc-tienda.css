@@ -1,0 +1,12 @@
+/* ===== Tienda en la ficha ===== */
+.lt-buy{display:flex;flex-direction:column;align-items:center;gap:10px;margin:18px 0 4px;text-align:center}
+.lt-buy[hidden]{display:none}
+.lt-price{font:400 clamp(30px,8vw,40px)/1 var(--display);letter-spacing:.04em;color:#ffd27a;text-shadow:0 0 22px rgba(255,190,80,.45)}
+.lt-lbl{margin:2px 0 0;font:600 12px/1 var(--cap);letter-spacing:.2em;text-transform:uppercase;color:#bfe3ff}
+.lt-lbl.cr-warn{color:#ffd27a;animation:crShake .4s}
+.lt-buy .cr-sizes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:min(100%,360px);gap:6px}
+.lt-buy .cr-sizes button{min-width:0;min-height:44px;padding:6px 2px;border-radius:12px;border:1px solid rgba(143,205,255,.45);background:rgba(10,20,40,.55);color:#e6f3ff;font:700 14px var(--body);cursor:pointer}
+.lt-buy .cr-sizes button[aria-pressed="true"]{background:#2f86d8;border-color:#8fcdff;color:#fff;box-shadow:0 0 16px rgba(47,134,216,.7)}
+.lt-note{margin:0;font:500 12.5px/1.5 var(--body);color:var(--muted)}
+.f-buy[aria-disabled="true"]{opacity:.5}
+@keyframes crShake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
