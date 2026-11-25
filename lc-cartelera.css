@@ -95,3 +95,19 @@ html #site #shirts .shirt .stage>img{background:#000!important;border-radius:3px
 html #site #shirts .shirt .stage::before{content:"";position:absolute;left:8.6%;top:6.4%;width:82.8%;height:87.2%;background:#000;border-radius:3px;z-index:0;opacity:1!important;filter:none!important}
 .f-bar{display:inline-flex!important;align-items:center;gap:10px;min-height:46px;padding:8px 20px!important;border-radius:999px!important;border:1px solid rgba(230,178,76,.55)!important;background:rgba(230,178,76,.12)!important;color:#f3d48a!important;font:600 14px var(--body)!important;letter-spacing:0!important;text-transform:none!important;cursor:pointer}
 .f-bar img{height:26px;width:auto}
+
+/* hover: brillo azul suave sin recortes */
+html #site #shirts .cat .shirts{padding-top:46px!important;padding-bottom:40px!important;margin-top:-28px!important;margin-bottom:-28px!important}
+html #site #shirts .shirt,html #site #shirts .shirt .info{overflow:visible!important}
+html #site #shirts .shirt:hover,html #site #shirts .shirt:focus-within{box-shadow:none!important;border-color:transparent!important;background:transparent!important}
+html #site #shirts .shirt .stage::after{display:none!important}
+html #site #shirts .shirt:hover .stage,html #site #shirts .shirt:focus-within .stage{filter:brightness(1.1) drop-shadow(0 0 8px rgba(120,195,255,.85)) drop-shadow(0 0 22px rgba(47,134,216,.7)) drop-shadow(0 0 40px rgba(47,134,216,.35))!important}
+
+/* separador entre salas: láser dibujado (nítido a cualquier tamaño) */
+html #site .cats>.cat+.cat::before{display:block!important;content:""!important;width:min(88%,980px)!important;height:44px!important;margin:8px auto 30px!important;opacity:1!important;
+  background-image:radial-gradient(closest-side,#fff 0,rgba(170,220,255,.95) 18%,rgba(92,180,255,.55) 45%,rgba(47,134,216,0) 100%),linear-gradient(90deg,rgba(47,134,216,0),rgba(110,190,255,.85) 50%,rgba(47,134,216,0))!important;
+  background-size:240px 14px,100% 2px!important;background-repeat:no-repeat!important;background-position:-20% 50%,center;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)!important;mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)!important;
+  filter:drop-shadow(0 0 6px rgba(47,134,216,.9))!important;animation:lcLaser 5.5s ease-in-out infinite!important}
+@keyframes lcLaser{0%{background-position:-20% 50%,center}50%{background-position:120% 50%,center}100%{background-position:-20% 50%,center}}
+@media (prefers-reduced-motion:reduce){html #site .cats>.cat+.cat::before{animation:none!important;background-position:50% 50%,center!important}}
