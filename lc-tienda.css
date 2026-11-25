@@ -10,3 +10,6 @@
 .lt-note{margin:0;font:500 12.5px/1.5 var(--body);color:var(--muted)}
 .f-buy[aria-disabled="true"]{opacity:.5}
 @keyframes crShake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+/* tienda cerrada (web real): precio visible, sin tallas ni compra */
+html.shop-closed .cr-sizes,html.shop-closed .cr-size-lbl,html.shop-closed .lt-sizes,html.shop-closed .lt-lbl,html.shop-closed .cr-buy-note,html.shop-closed .lt-note{display:none!important}
+html.shop-closed .cr-buy-btn,html.shop-closed #ficha .f-buy{opacity:.55!important;cursor:default!important;filter:saturate(.5)}
