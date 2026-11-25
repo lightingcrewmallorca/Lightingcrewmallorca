@@ -31,14 +31,21 @@
       });
     }
   });
-  /* cartel al final de Camisetas */
-  var cam=document.getElementById("camisetas");
-  if(cam&&!document.getElementById("br-banner")){
-    var bn=document.createElement("div");bn.id="br-banner";bn.className="br-banner";
-    bn.innerHTML='<div class="br-b-tx"><img src="bar-i-taza.webp" alt=""><h3><span>¿La quieres en taza o termo?</span></h3><p><span>Pásate por el bar y prueba cualquier diseño.</span></p><button type="button"><span>Pasar al bar</span></button></div>';
-    var hd=cam.querySelector(".sec-head");
-    if(hd)hd.after(bn);else cam.insertBefore(bn,cam.firstChild);
-    bn.querySelector("button").addEventListener("click",function(){if(typeof showPage==="function")showPage("termos");scrollTo(0,0)});
+  /* El Bar en Camisetas: botón junto a las categorías + cartel dentro de cada galería */
+  function goBar(e){if(e){e.preventDefault();e.stopPropagation()}if(typeof showPage==="function")showPage("termos");scrollTo(0,0)}
+  if(window.LCI)LCI.add({"El Bar":["The Bar","El Bar","Die Bar"],"Ahora también":["Now also","Ara també","Jetzt auch"],"en taza y termo":["on mugs & flasks","en tassa i termo","auf Tasse & Thermo"],"Prueba cualquier diseño":["Try any design","Prova qualsevol disseny","Probier jedes Design"],"Pasar al bar":["Go to the bar","Passar al bar","Zur Bar"]});
+  function addBar(){
+    var f=document.getElementById("filters");
+    if(f&&!f.querySelector(".br-chip")){var c=document.createElement("button");c.type="button";c.className="br-chip";
+      c.innerHTML='<img src="bar-i-taza.webp" alt=""><span>El Bar</span>';c.addEventListener("click",goBar);var t=f.querySelector("[data-f=all]");if(t)t.after(c);else f.appendChild(c)}
+    document.querySelectorAll("#shirts .cat .shirts").forEach(function(row){
+      if(row.querySelector(".br-card"))return;var cs=row.querySelectorAll(".shirt");if(cs.length<2)return;
+      var k=document.createElement("button");k.type="button";k.className="br-card";
+      k.innerHTML='<span class="br-c-img" aria-hidden="true"></span><span class="br-c-tx"><img src="bar-i-taza.webp" alt=""><b><span>Ahora también</span></b><strong><span>en taza y termo</span></strong><em><span>Prueba cualquier diseño</span></em><i><span>Pasar al bar</span></i></span>';
+      k.addEventListener("click",goBar);var ref=cs[Math.min(3,cs.length-1)];ref.after(k);
+    });
+    if(window.LCI)LCI.refresh();
   }
+  addBar();setTimeout(addBar,600);
   if(window.LCI)LCI.refresh();
 })();
