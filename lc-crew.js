@@ -16,6 +16,8 @@
   }
   var drops=[].slice.call(sec.querySelectorAll(".drop"));
   if(drops.length<1)return;
+  // espalda al tamaño real de impresión (como en Printful)
+  ["cr-hood-back.webp","cr-tee-back.webp"].forEach(function(f,k){var im=drops[k]&&drops[k].querySelector(".face.back");if(im)im.src=f});
   // la imagen debajo del título y el interruptor debajo de la imagen
   // prenda grande con el interruptor al lado
   drops.forEach(function(d){
