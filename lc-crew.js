@@ -48,6 +48,20 @@
       else if(hint)setTimeout(function(){hint.textContent="Toca o desliza para darle la vuelta"},0);
     }).observe(d,{attributes:true,attributeFilter:["data-on"]});
   });
+
+  // comprar: enlaces de pago de Stripe (envío a España incluido)
+  var BUY=[{u:"https://buy.stripe.com/5kQ8wOewR1C1fjr6iP6oo01",p:"43 €",r:"crew-sudadera"},
+           {u:"https://buy.stripe.com/9B69ASbkF3K9efn36D6oo00",p:"29 €",r:"crew-camiseta"}];
+  if(window.LCI)LCI.add({"Comprar":["Buy","Comprar","Kaufen"],"Tallas S a 3XL · Envío a España incluido":["Sizes S to 3XL · Shipping to Spain included","Talles S a 3XL · Enviament a Espanya inclòs","Größen S bis 3XL · Versand nach Spanien inklusive"],
+    "Se imprime bajo pedido y llega en 1–2 semanas.":["Printed on demand, arrives in 1–2 weeks.","S'imprimeix sota comanda i arriba en 1–2 setmanes.","Wird auf Bestellung gedruckt, Lieferung in 1–2 Wochen."]});
+  drops.forEach(function(d,k){
+    var b=BUY[k],copy=d.querySelector(".drop-copy");if(!b||!copy||d.querySelector(".cr-buy"))return;
+    var box=document.createElement("div");box.className="cr-buy";
+    box.innerHTML='<div class="cr-price">'+b.p+'</div>'+
+      '<a class="cr-buy-btn" href="'+b.u+'?client_reference_id='+b.r+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h13l-1.5 8.5H7.5L6 4H3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></svg><span>Comprar</span></a>'+
+      '<p class="cr-buy-note"><span>Tallas S a 3XL · Envío a España incluido</span><br><span>Se imprime bajo pedido y llega en 1–2 semanas.</span></p>';
+    copy.appendChild(box);
+  });
   if(drops.length<2)return;
   var pick=document.createElement("div");pick.className="cr-pick";pick.setAttribute("role","group");
   pick.innerHTML='<button type="button" data-i="0" aria-pressed="true"><span>Sudadera</span></button><button type="button" data-i="1" aria-pressed="false"><span>Camiseta</span></button>';
