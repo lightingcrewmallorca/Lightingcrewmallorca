@@ -1,0 +1,7 @@
+html.game-on body{overflow:hidden!important;position:fixed;inset:0;width:100%}
+html.game-on #game-ov{position:fixed!important;left:0;right:0;padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box;background:#000}
+#game-ov:fullscreen{width:100vw;height:100vh!important;top:0!important}
+html.game-on .appbar,html.game-on nav.jump.tabbar,html.game-on #tabbar{visibility:hidden!important}
+#game-ov .game-bar{padding:calc(4px + env(safe-area-inset-top,0px)) 10px 4px!important;font-size:11px}
+#game-ov .game-bar .btn{padding:5px 10px!important;font-size:11px!important}
+.zg-a2hs{margin:10px auto 0;max-width:340px;text-align:center;font:500 12.5px/1.45 var(--body,system-ui);color:rgba(220,235,255,.75)}
