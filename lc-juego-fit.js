@@ -10,21 +10,17 @@
   function fit(){
     var vv=window.visualViewport,h=vv?vv.height:innerHeight,t=vv?vv.offsetTop:0;
     ov.style.top=t+"px";ov.style.height=h+"px";ov.style.bottom="auto";
-    // si ya se ha deslizado (barra de Safari encogida) basta con menos hueco
-    ov.style.paddingBottom=floatBar?((scrollY>root._y0+20)?"44px":"74px"):"";
+    ov.style.paddingBottom=floatBar?"74px":"";
   }
   function onOpen(){
-    root.classList.add("game-on");if(!floatBar)root.classList.add("game-lock");
-    if(floatBar){root.classList.add("game-swipe");root._y0=scrollY;var h=ov.querySelector(".zg-swipe");
-      if(!h){h=document.createElement("span");h.className="zg-swipe";h.innerHTML="<span>⇡ Desliza aquí hacia arriba para esconder la barra de Safari</span>";var bar=ov.querySelector(".game-bar span");if(bar)bar.after(h);if(window.LCI){LCI.add({"⇡ Desliza aquí hacia arriba para esconder la barra de Safari":["⇡ Swipe up here to hide Safari's bar","⇡ Llisca aquí cap amunt per amagar la barra de Safari","⇡ Hier nach oben wischen, um die Safari-Leiste auszublenden"]});LCI.refresh(h)}}}
-    fit();
+    root.classList.add("game-on");fit();
     // Android y ordenador: pantalla completa real
     if(!ios&&!document.fullscreenElement&&ov.requestFullscreen){ov.requestFullscreen({navigationUI:"hide"}).catch(function(){})}
   }
-  function onClose(){root.classList.remove("game-on","game-lock","game-swipe");if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(function(){})}
+  function onClose(){root.classList.remove("game-on");if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(function(){})}
   new MutationObserver(function(){ov.hidden?onClose():onOpen()}).observe(ov,{attributes:true,attributeFilter:["hidden"]});
-  if(window.visualViewport){visualViewport.addEventListener("resize",function(){if(!ov.hidden)fit()});addEventListener("scroll",function(){if(!ov.hidden)fit()},{passive:true});visualViewport.addEventListener("scroll",function(){if(!ov.hidden)fit()})}
-  addEventListener("resize",function(){if(!ov.hidden)fit()});addEventListener("scroll",function(){if(!ov.hidden)fit()},{passive:true});addEventListener("orientationchange",function(){setTimeout(fit,300)});
+  if(window.visualViewport){visualViewport.addEventListener("resize",function(){if(!ov.hidden)fit()});visualViewport.addEventListener("scroll",function(){if(!ov.hidden)fit()})}
+  addEventListener("resize",function(){if(!ov.hidden)fit()});addEventListener("orientationchange",function(){setTimeout(fit,300)});
   // si se sale de pantalla completa con el botón del sistema, se queda el juego abierto en la ventana
   // aviso para iPhone en Safari: añadir a pantalla de inicio = pantalla completa
   if(ios&&!standalone){
