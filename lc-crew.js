@@ -1,6 +1,6 @@
 /* ===== Camisetas Crew: título de neón + un solo bloque con selector ===== */
 (function(){
-  if(window.LCI)LCI.add({"Sudadera":["Hoodie","Dessuadora","Hoodie"],"Camiseta":["T-shirt","Samarreta","T-Shirt"],
+  if(window.LCI)LCI.add({"Ropa Crew":["Crew Clothing","Roba Crew","Crew-Kleidung"],"Sudadera":["Hoodie","Dessuadora","Hoodie"],"Camiseta":["T-shirt","Samarreta","T-Shirt"],
     "Dar la vuelta":["Turn around","Girar","Umdrehen"],"Toca o desliza para darle la vuelta":["Tap or swipe to turn it around","Toca o llisca per girar-la","Tippen oder wischen zum Umdrehen"],
     "El uniforme":["The crew's","L'uniforme","Die Uniform"],"del crew.":["uniform.","del crew.","der Crew."],
     "La sudadera y la camiseta oficiales de Lighting Crew Mallorca, edición 2027.":["The official Lighting Crew Mallorca hoodie and t-shirt, 2027 edition.","La dessuadora i la samarreta oficials de Lighting Crew Mallorca, edició 2027.","Der offizielle Hoodie und das T-Shirt von Lighting Crew Mallorca, Edition 2027."]});
@@ -9,7 +9,7 @@
   if(head&&!head.querySelector(".cr-title")){
     var h=document.createElement("h2");
     h.className="tw-title cr-title";
-    h.innerHTML='<img class="tw-ti cr-ic" src="cr-icon.webp" alt="">'+"<span>Camisetas Crew</span>";
+    h.innerHTML='<img class="tw-ti cr-ic" src="cr-icon.webp" alt="">'+"<span>Ropa Crew</span>";
     head.insertBefore(h,head.firstChild);
     var tl=head.querySelector(".tagline");
     if(tl)tl.innerHTML='<span class="tag-big"><span>El uniforme</span> <span><span>del crew.</span></span></span><span>La sudadera y la camiseta oficiales de Lighting Crew Mallorca, edición 2027.</span>';
