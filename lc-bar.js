@@ -37,7 +37,7 @@
   function addBar(){
     var f=document.getElementById("filters");
     if(f&&!f.querySelector(".br-chip")){var c=document.createElement("button");c.type="button";c.className="br-chip";
-      c.innerHTML='<img src="bar-i-taza.webp" alt=""><span>El Bar</span>';c.addEventListener("click",goBar);var t=f.querySelector("[data-f=all]");if(t)t.after(c);else f.appendChild(c)}
+      c.innerHTML='<img src="bar-i-taza.webp" alt=""><span>El Bar</span>';c.addEventListener("click",goBar);f.appendChild(c)}
     document.querySelectorAll("#shirts .cat .shirts").forEach(function(row){
       if(row.querySelector(".br-card"))return;var cs=row.querySelectorAll(".shirt");if(cs.length<2)return;
       var k=document.createElement("button");k.type="button";k.className="br-card";
